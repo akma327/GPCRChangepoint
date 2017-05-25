@@ -19,6 +19,7 @@ USAGE_STR = """
 
 # Example
 INPUT_JSON="/scratch/PI/rondror/akma327/DynamicNetworks/data/crystal-analysis/interaction-footprint-analysis/simulation-evobundle/flareplot-dataset/water-network/M2R-active-restrained-unpublished-rep_1.json"
+cd /scratch/PI/rondror/akma327/GPCRChangepoint/src/flareplot
 python calculate_changepts.py $INPUT_JSON
 
 """
@@ -30,7 +31,14 @@ def calc_cpts(INPUT_JSON):
     Calculates the changepoints and associated time-series observables 
     associated with a particular change in evolving graph network.
     """
-    pass
+    f = open(INPUT_JSON, 'r')
+    json_str = ""
+    for line in f:
+        json_str += line 
+
+    flareplot = json.loads(json_str)
+    edges = flareplot["edges"]
+    print(len(edges))
 
 
 
